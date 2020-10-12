@@ -11,28 +11,35 @@ struct PlebdokuView: View {
     
     @EnvironmentObject var sudokuController: SudokuController
     
+    var gridSpacing: CGFloat = 4.0
+    
     var body: some View {
-        VStack {
-            Button("Plebdoku") {
-                print(sudokuController.plebdokuString())
-                sudokuController.generatePlebdoku()
-                print(sudokuController.plebdokuString())
-            }
+        ZStack {
+            Color(.systemGroupedBackground)
+                .edgesIgnoringSafeArea(.all)
+            
             VStack {
-                ForEach(0..<3) { row in
-                    HStack {
-                        Spacer()
-                        ForEach(0..<3) { col in
-                            SudokuSquare(row: row, col: col)
-                            if col != 2 {
-                                Divider()
+                Button("Plebdoku") {
+                    print(sudokuController.plebdokuString())
+                    sudokuController.generatePlebdoku()
+                    print(sudokuController.plebdokuString())
+                }
+                VStack(spacing: gridSpacing) {
+                    ForEach(0..<3) { row in
+                        HStack(spacing: gridSpacing) {
+                            Spacer()
+                            ForEach(0..<3) { col in
+                                SudokuSquare(row: row, col: col, gridSpacing: gridSpacing)
+                                if col != 2 {
+                                    Divider()
+                                }
                             }
+                            Spacer()
                         }
-                        Spacer()
-                    }
-                    .aspectRatio(11/3, contentMode: .fit)
-                    if row != 2 {
-                        Divider()
+                        .aspectRatio(10/3, contentMode: .fit)
+                        if row != 2 {
+                            Divider()
+                        }
                     }
                 }
             }
@@ -45,15 +52,16 @@ struct SudokuSquare: View {
     
     var row: Int
     var col: Int
+    var gridSpacing: CGFloat
     
     var body: some View {
-        VStack {
+        VStack(spacing: gridSpacing) {
             ForEach(0..<3) { row in
-                HStack {
+                HStack(spacing: gridSpacing) {
                     ForEach(0..<3) { col in
                         ZStack {
                             RoundedRectangle(cornerRadius: 4)
-                                .foregroundColor(.gray)
+                                .foregroundColor(Color(.secondarySystemGroupedBackground))
                             Text("\(sudokuController.plebdoku[row + (self.row * 3)][col + (self.col * 3)])")
                         }
                     }
