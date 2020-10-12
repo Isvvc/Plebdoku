@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SudokuController {
+class SudokuController: ObservableObject {
     private let defaultSudoku: [[Int8]] = [
         [9,2,7,4,3,1,5,8,6],
         [4,5,6,9,2,8,7,3,1],
