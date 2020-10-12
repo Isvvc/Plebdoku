@@ -21,9 +21,13 @@ class SudokuController: ObservableObject {
     ]
     
     @Published var plebdoku: [[Int8]]
+    @Published var x: Int
+    @Published var y: Int
     
     init() {
         plebdoku = []
+        x = 0
+        y = 0
         generatePlebdoku()
     }
     
@@ -39,6 +43,10 @@ class SudokuController: ObservableObject {
         //TODO: Shuffle columns
         
         self.plebdoku = shuffledRows
+        
+        // Pick a random number to be missing
+        x = Int.random(in: 0..<9)
+        y = Int.random(in: 0..<9)
     }
     
     func plebdokuString() -> String {

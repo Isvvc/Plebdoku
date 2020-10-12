@@ -20,9 +20,7 @@ struct PlebdokuView: View {
             
             VStack {
                 Button("Plebdoku") {
-                    print(sudokuController.plebdokuString())
                     sudokuController.generatePlebdoku()
-                    print(sudokuController.plebdokuString())
                 }
                 VStack(spacing: gridSpacing) {
                     ForEach(0..<3) { row in
@@ -62,7 +60,11 @@ struct SudokuSquare: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 4)
                                 .foregroundColor(Color(.secondarySystemGroupedBackground))
-                            Text("\(sudokuController.plebdoku[row + (self.row * 3)][col + (self.col * 3)])")
+                            let y = row + (self.row * 3)
+                            let x = col + (self.col * 3)
+                            if !(y == sudokuController.y && x == sudokuController.x) {
+                                Text("\(sudokuController.plebdoku[y][x])")
+                            }
                         }
                     }
                 }
