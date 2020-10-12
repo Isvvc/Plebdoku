@@ -14,31 +14,21 @@ struct PlebdokuView: View {
     var gridSpacing: CGFloat = 4.0
     
     var body: some View {
-        ZStack {
-            Color(.systemGroupedBackground)
-                .edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                Button("Plebdoku") {
-                    sudokuController.generatePlebdoku()
-                }
-                VStack(spacing: gridSpacing) {
-                    ForEach(0..<3) { row in
-                        HStack(spacing: gridSpacing) {
-                            Spacer()
-                            ForEach(0..<3) { col in
-                                SudokuSquare(row: row, col: col, gridSpacing: gridSpacing)
-                                if col != 2 {
-                                    Divider()
-                                }
-                            }
-                            Spacer()
-                        }
-                        .aspectRatio(10/3, contentMode: .fit)
-                        if row != 2 {
+        VStack(spacing: gridSpacing) {
+            ForEach(0..<3) { row in
+                HStack(spacing: gridSpacing) {
+                    ForEach(0..<3) { col in
+                        SudokuSquare(row: row, col: col, gridSpacing: gridSpacing)
+                        if col != 2 {
                             Divider()
                         }
                     }
+                }
+                .padding(.leading, gridSpacing)
+                .padding(.trailing, gridSpacing)
+                .aspectRatio(10/3, contentMode: .fit)
+                if row != 2 {
+                    Divider()
                 }
             }
         }
