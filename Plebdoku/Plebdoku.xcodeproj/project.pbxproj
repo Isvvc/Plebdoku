@@ -15,6 +15,7 @@
 		590CB49B2534EE3C006E6FE4 /* Plebdoku.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 590CB4992534EE3C006E6FE4 /* Plebdoku.xcdatamodeld */; };
 		590CB4A62534EE3C006E6FE4 /* PlebdokuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590CB4A52534EE3C006E6FE4 /* PlebdokuTests.swift */; };
 		590CB4B12534EE3C006E6FE4 /* PlebdokuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590CB4B02534EE3C006E6FE4 /* PlebdokuUITests.swift */; };
+		590CB4C72534F08C006E6FE4 /* SudokuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590CB4C62534F08C006E6FE4 /* SudokuController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		590CB4AC2534EE3C006E6FE4 /* PlebdokuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlebdokuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		590CB4B02534EE3C006E6FE4 /* PlebdokuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlebdokuUITests.swift; sourceTree = "<group>"; };
 		590CB4B22534EE3C006E6FE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		590CB4C62534F08C006E6FE4 /* SudokuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +104,7 @@
 				590CB48E2534EE39006E6FE4 /* PlebdokuApp.swift */,
 				590CB4902534EE39006E6FE4 /* ContentView.swift */,
 				590CB4922534EE3C006E6FE4 /* Assets.xcassets */,
-				590CB4972534EE3C006E6FE4 /* Persistence.swift */,
+				590CB4C22534F063006E6FE4 /* Controllers */,
 				590CB49C2534EE3C006E6FE4 /* Info.plist */,
 				590CB4992534EE3C006E6FE4 /* Plebdoku.xcdatamodeld */,
 				590CB4942534EE3C006E6FE4 /* Preview Content */,
@@ -134,6 +136,15 @@
 				590CB4B22534EE3C006E6FE4 /* Info.plist */,
 			);
 			path = PlebdokuUITests;
+			sourceTree = "<group>";
+		};
+		590CB4C22534F063006E6FE4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				590CB4972534EE3C006E6FE4 /* Persistence.swift */,
+				590CB4C62534F08C006E6FE4 /* SudokuController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				590CB4C72534F08C006E6FE4 /* SudokuController.swift in Sources */,
 				590CB4982534EE3C006E6FE4 /* Persistence.swift in Sources */,
 				590CB4912534EE39006E6FE4 /* ContentView.swift in Sources */,
 				590CB48F2534EE39006E6FE4 /* PlebdokuApp.swift in Sources */,
