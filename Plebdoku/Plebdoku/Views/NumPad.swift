@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NumPad: View {
+    @EnvironmentObject var sudokuController: SudokuController
+    
     var body: some View {
         VStack {
             ForEach(0..<3) { col in
@@ -16,7 +18,7 @@ struct NumPad: View {
                     ForEach(0..<3) { row in
                         let num = 7 + row - (col * 3)
                         Button {
-                            input(num)
+                            sudokuController.guess(num)
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 8)
@@ -33,10 +35,6 @@ struct NumPad: View {
             }
         }
         .padding(.bottom)
-    }
-    
-    func input(_ num: Int) {
-        print(num)
     }
 }
 

@@ -23,6 +23,11 @@ class SudokuController: ObservableObject {
     @Published var plebdoku: [[Int8]]
     @Published var x: Int
     @Published var y: Int
+    @Published var winner: Bool?
+    
+    var missing: Int8 {
+        plebdoku[y][x]
+    }
     
     init() {
         plebdoku = []
@@ -58,6 +63,10 @@ class SudokuController: ObservableObject {
             string.append("\n")
         }
         return string
+    }
+    
+    func guess(_ num: Int) {
+        winner = num == missing
     }
     
 }

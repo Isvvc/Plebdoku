@@ -18,7 +18,16 @@ struct GameView: View {
                 Spacer()
                 PlebdokuView()
                 Spacer()
-                Button("Plebdoku") {
+                if let winner = sudokuController.winner {
+                    if winner {
+                        Text("You're winner!")
+                    } else {
+                        Text("You're a pleb.")
+                    }
+                } else {
+                    Text("Plebdoku")
+                }
+                Button("New Game") {
                     sudokuController.generatePlebdoku()
                 }
                 NumPad()
