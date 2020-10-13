@@ -52,7 +52,7 @@ struct SudokuSquare: View {
                                 .foregroundColor(Color(.secondarySystemGroupedBackground))
                             let y = row + (self.row * 3)
                             let x = col + (self.col * 3)
-                            if !(!(sudokuController.winner ?? false) && y == sudokuController.y && x == sudokuController.x) {
+                            if !(sudokuController.gameInProgress && y == sudokuController.y && x == sudokuController.x) {
                                 Text("\(sudokuController.plebdoku[y][x])")
                             }
                         }

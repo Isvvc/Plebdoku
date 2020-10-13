@@ -30,6 +30,10 @@ class SudokuController: ObservableObject {
         plebdoku[y][x]
     }
     
+    var gameInProgress: Bool {
+        !(winner ?? false)
+    }
+    
     init() {
         plebdoku = []
         x = 0

@@ -26,10 +26,11 @@ struct NumPad: View {
                             Text("\(num)")
                         }
                         .aspectRatio(2, contentMode: .fit)
-                        .foregroundColor(.primary)
+                        .foregroundColor(sudokuController.gameInProgress ? .primary : .secondary)
                         .gesture(DragGesture(minimumDistance: 0)
                                     .updating($guess) { _, guess, _ in
-                                        if guess != num {
+                                        if guess != num,
+                                           sudokuController.gameInProgress {
                                             sudokuController.guess(num)
                                             guess = num
                                             print(guess)
