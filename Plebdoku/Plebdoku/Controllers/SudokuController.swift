@@ -24,7 +24,8 @@ class SudokuController: ObservableObject {
     @Published var x: Int
     @Published var y: Int
     @Published var winner: Bool?
-    @Published var startTime: Date
+    @Published var startTime: Date = Date()
+    @Published var timerIsRunning = false
     
     var missing: Int8 {
         plebdoku[y][x]
@@ -38,7 +39,6 @@ class SudokuController: ObservableObject {
         plebdoku = []
         x = 0
         y = 0
-        startTime = Date()
         generatePlebdoku()
     }
     

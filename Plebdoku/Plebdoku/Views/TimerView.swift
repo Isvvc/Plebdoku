@@ -11,7 +11,7 @@ struct TimerView: View {
     
     @EnvironmentObject var sudokuController: SudokuController
     
-    @State private var isTimerRunning = false
+//    @State private var isTimerRunning = false
     @State private var timerString = "0.00"
     @State private var timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
 
@@ -19,7 +19,7 @@ struct TimerView: View {
         Text(timerString)
             .font(Font.system(.title, design: .monospaced))
             .onReceive(timer) { _ in
-                if isTimerRunning {
+                if sudokuController.timerIsRunning {
                     timerString = String(format: "%.2f", Date().timeIntervalSince(sudokuController.startTime))
                 }
             }
@@ -43,13 +43,13 @@ struct TimerView: View {
     
     func stopTimer() {
         timer.upstream.connect().cancel()
-        isTimerRunning = false
+        sudokuController.timerIsRunning = false
     }
     
     func startTimer() {
         timerString = "0.00"
         timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
-        isTimerRunning = true
+        sudokuController.timerIsRunning = true
     }
 }
 

@@ -8,7 +8,20 @@
 import SwiftUI
 
 struct GameView: View {
+    
     @EnvironmentObject var sudokuController: SudokuController
+    
+    @State private var showingSettings = false
+    
+    var settingsButton: some View {
+        NavigationLink(destination: SettingsView(), isActive: $showingSettings) {
+                Image(systemName: "gear")
+                    .imageScale(.large)
+        }
+        .onChange(of: showingSettings) { showingSettings in
+            sudokuController.timerIsRunning = !showingSettings
+        }
+    }
     
     var body: some View {
         ZStack {
@@ -34,6 +47,8 @@ struct GameView: View {
                 NumPad()
             }
         }
+        .navigationTitle("Plebdoku")
+        .navigationBarItems(trailing: settingsButton)
     }
 }
 

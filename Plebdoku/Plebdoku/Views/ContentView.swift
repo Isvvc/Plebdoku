@@ -10,8 +10,10 @@ import CoreData
 
 struct ContentView: View {
     var body: some View {
-        GameView()
-            .environmentObject(SudokuController())
+        NavigationView {
+            GameView()
+                .environmentObject(SudokuController())
+        }
     }
 }
 
