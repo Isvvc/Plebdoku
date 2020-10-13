@@ -52,6 +52,8 @@ class SudokuController: ObservableObject {
         // Pick a random number to be missing
         x = Int.random(in: 0..<9)
         y = Int.random(in: 0..<9)
+        
+        winner = nil
     }
     
     func plebdokuString() -> String {
