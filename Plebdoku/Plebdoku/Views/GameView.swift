@@ -18,6 +18,7 @@ struct GameView: View {
                 Spacer()
                 PlebdokuView()
                 Spacer()
+                TimerView()
                 if let winner = sudokuController.winner {
                     if winner {
                         Text("You're winner!")

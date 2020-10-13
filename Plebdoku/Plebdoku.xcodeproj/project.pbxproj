@@ -17,6 +17,7 @@
 		590CB4B12534EE3C006E6FE4 /* PlebdokuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590CB4B02534EE3C006E6FE4 /* PlebdokuUITests.swift */; };
 		590CB4C72534F08C006E6FE4 /* SudokuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590CB4C62534F08C006E6FE4 /* SudokuController.swift */; };
 		590CB4D125350007006E6FE4 /* PlebdokuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590CB4D025350007006E6FE4 /* PlebdokuView.swift */; };
+		59762CB725352A7400F743BE /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59762CB625352A7300F743BE /* TimerView.swift */; };
 		59CC2C0B25351D4F00061DDC /* NumPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CC2C0A25351D4F00061DDC /* NumPad.swift */; };
 		59CC2C1025351E5700061DDC /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CC2C0F25351E5700061DDC /* GameView.swift */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,7 @@
 		590CB4B22534EE3C006E6FE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		590CB4C62534F08C006E6FE4 /* SudokuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuController.swift; sourceTree = "<group>"; };
 		590CB4D025350007006E6FE4 /* PlebdokuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlebdokuView.swift; sourceTree = "<group>"; };
+		59762CB625352A7300F743BE /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		59CC2C0A25351D4F00061DDC /* NumPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumPad.swift; sourceTree = "<group>"; };
 		59CC2C0F25351E5700061DDC /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,6 +162,7 @@
 				59CC2C0F25351E5700061DDC /* GameView.swift */,
 				590CB4D025350007006E6FE4 /* PlebdokuView.swift */,
 				59CC2C0A25351D4F00061DDC /* NumPad.swift */,
+				59762CB625352A7300F743BE /* TimerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59762CB725352A7400F743BE /* TimerView.swift in Sources */,
 				590CB4D125350007006E6FE4 /* PlebdokuView.swift in Sources */,
 				590CB4C72534F08C006E6FE4 /* SudokuController.swift in Sources */,
 				590CB4982534EE3C006E6FE4 /* Persistence.swift in Sources */,
