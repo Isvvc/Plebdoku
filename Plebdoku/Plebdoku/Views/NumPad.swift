@@ -10,6 +10,8 @@ import SwiftUI
 struct NumPad: View {
     @EnvironmentObject var sudokuController: SudokuController
     
+    @GestureState private var guess = 0
+    
     var body: some View {
         VStack {
             ForEach(0..<3) { col in
@@ -17,18 +19,22 @@ struct NumPad: View {
                     Spacer()
                     ForEach(0..<3) { row in
                         let num = 7 + row - (col * 3)
-                        Button {
-                            sudokuController.guess(num)
-                        } label: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 8)
-                                    .foregroundColor(Color(.secondarySystemGroupedBackground))
-                                    .shadow(radius: 1, x: 0, y: 1)
-                                Text("\(num)")
-                            }
-                            .aspectRatio(2, contentMode: .fit)
-                            .foregroundColor(.primary)
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 8)
+                                .foregroundColor(Color(.secondarySystemGroupedBackground))
+                                .shadow(radius: 1, x: 0, y: 1)
+                            Text("\(num)")
                         }
+                        .aspectRatio(2, contentMode: .fit)
+                        .foregroundColor(.primary)
+                        .gesture(DragGesture(minimumDistance: 0)
+                                    .updating($guess) { _, guess, _ in
+                                        if guess != num {
+                                            sudokuController.guess(num)
+                                            guess = num
+                                            print(guess)
+                                        }
+                                    })
                     }
                     Spacer()
                 }
