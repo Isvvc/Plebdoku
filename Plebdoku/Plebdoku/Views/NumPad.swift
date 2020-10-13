@@ -33,7 +33,6 @@ struct NumPad: View {
                                            sudokuController.gameInProgress {
                                             sudokuController.guess(num)
                                             guess = num
-                                            print(guess)
                                         }
                                     })
                     }

@@ -44,7 +44,11 @@ struct GameView: View {
                 Button("New Game") {
                     sudokuController.generatePlebdoku()
                 }
-                NumPad()
+                GeometryReader { _ in
+                    // For some reason the numpad will only
+                    // resize if it's in a geometry reader.
+                    NumPad()
+                }
             }
         }
         .navigationTitle("Plebdoku")

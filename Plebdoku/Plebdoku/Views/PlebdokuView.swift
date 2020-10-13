@@ -26,12 +26,12 @@ struct PlebdokuView: View {
                 }
                 .padding(.leading, gridSpacing)
                 .padding(.trailing, gridSpacing)
-                .aspectRatio(10/3, contentMode: .fit)
                 if row != 2 {
                     Divider()
                 }
             }
         }
+        .padding(.top)
     }
 }
 
@@ -50,6 +50,7 @@ struct SudokuSquare: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 4)
                                 .foregroundColor(Color(.secondarySystemGroupedBackground))
+                                .aspectRatio(1, contentMode: .fit)
                             let y = row + (self.row * 3)
                             let x = col + (self.col * 3)
                             if !(sudokuController.gameInProgress && y == sudokuController.y && x == sudokuController.x) {
