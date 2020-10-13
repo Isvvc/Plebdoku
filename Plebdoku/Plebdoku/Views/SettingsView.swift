@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
+    @AppStorage("numpadLayout") var numpadLayout = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Form {
+            HStack {
+                Text("Numpad Layout")
+                Spacer()
+                Picker("Numpad Layout", selection: $numpadLayout) {
+                    Text("Phone").tag(false)
+                    Text("10-key").tag(true)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+            }
+        }
     }
 }
 
