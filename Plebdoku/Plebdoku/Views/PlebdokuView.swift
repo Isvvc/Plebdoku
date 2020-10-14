@@ -67,5 +67,6 @@ struct SudokuSquare: View {
 struct PlebdokuView_Previews: PreviewProvider {
     static var previews: some View {
         PlebdokuView()
+            .environmentObject(SudokuController())
     }
 }
