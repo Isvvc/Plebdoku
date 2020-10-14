@@ -34,7 +34,7 @@ class GameController: ObservableObject {
     
     func score(_ game: Game) -> Int {
         guard let gameTime = gameTime(game) else { return 0 }
-        return Int(1000 * pow(0.5, 0.5 * gameTime))
+        return Int(1000 * pow(0.5, 0.5 * gameTime)) * (game.winner ? 1 : -1)
     }
     
 }

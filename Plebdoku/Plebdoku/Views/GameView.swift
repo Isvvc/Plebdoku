@@ -44,8 +44,8 @@ struct GameView: View {
                 PlebdokuView()
                 Spacer()
                 TimerView()
-                if let winner = sudokuController.winner {
-                    if winner {
+                if sudokuController.game?.endTime != nil {
+                    if sudokuController.game?.winner ?? false {
                         Text("You're winner! \(sudokuController.scoreString(gameController: gameController))")
                     } else {
                         Text("You're a pleb.")

@@ -23,8 +23,6 @@ class SudokuController: ObservableObject {
     @Published var plebdoku: [[Int8]]
     @Published var x: Int
     @Published var y: Int
-    @Published var winner: Bool?
-    @Published var startTime: Date = Date()
     @Published var timerIsRunning = false
     @Published var game: Game?
     
@@ -33,7 +31,7 @@ class SudokuController: ObservableObject {
     }
     
     var gameInProgress: Bool {
-        !(winner ?? false)
+        game?.endTime == nil
     }
     
     init(context: NSManagedObjectContext? = nil) {
@@ -78,9 +76,6 @@ class SudokuController: ObservableObject {
         // Pick a random number to be missing
         x = Int.random(in: 0..<9)
         y = Int.random(in: 0..<9)
-        
-        winner = nil
-        startTime = Date()
     }
     
     func newGame(context: NSManagedObjectContext) {
@@ -110,11 +105,9 @@ class SudokuController: ObservableObject {
     }
     
     func guess(_ num: Int) {
-        winner = num == missing
-        if winner! {
-            game?.endTime = Date()
-            PersistenceController.shared.save()
-        }
+        game?.winner = num == missing
+        game?.endTime = Date()
+        PersistenceController.shared.save()
     }
     
     func scoreString(gameController: GameController) -> String {
