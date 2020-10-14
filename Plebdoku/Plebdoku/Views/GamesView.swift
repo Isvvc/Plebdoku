@@ -9,12 +9,21 @@ import SwiftUI
 
 struct GamesView: View {
     @Environment(\.managedObjectContext) private var moc
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Game.startTime, ascending: false)])
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Game.startTime, ascending: false)],
+        predicate: NSPredicate(format: "endTime != nil"))
     private var games: FetchedResults<Game>
     
     @EnvironmentObject var gameController: GameController
     
     var body: some View {
+        HStack {
+            Text("Total Score:")
+            let score = games.map { gameController.score($0) }.reduce(0, +)
+            Text("\(score)")
+                .foregroundColor(score > 0 ? .green : .red)
+        }
+        .font(.title)
         List {
             ForEach(games) { game in
                 HStack {
@@ -26,6 +35,7 @@ struct GamesView: View {
                     }
                     Spacer()
                     Text("\(gameController.score(game)) points")
+                        .foregroundColor(game.winner ? .green : .red)
                 }
             }
         }

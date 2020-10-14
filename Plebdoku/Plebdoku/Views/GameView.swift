@@ -27,7 +27,10 @@ struct GameView: View {
     }
     
     var gamesButton: some View {
-        NavigationLink(destination: GamesView(), isActive: $showingGames) {
+        NavigationLink(
+            destination: GamesView()
+                .environmentObject(gameController),
+            isActive: $showingGames) {
             Text("History")
         }
         .onChange(of: showingGames) { showingGames in

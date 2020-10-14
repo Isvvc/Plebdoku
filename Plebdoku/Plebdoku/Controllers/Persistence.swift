@@ -18,6 +18,7 @@ struct PersistenceController {
             newGame.startTime = Date()
             newGame.endTime = Date(timeInterval: TimeInterval.random(in: 10...1), since: Date())
             newGame.number = Int16.random(in: 1...9)
+            newGame.winner = Bool.random()
         }
         result.save()
         return result
