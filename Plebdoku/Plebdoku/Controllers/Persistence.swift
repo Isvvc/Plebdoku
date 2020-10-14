@@ -15,18 +15,11 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
             let newGame = Game(context: viewContext)
-            newGame.startTime = Date(timeInterval: TimeInterval.random(in: 1...10), since: Date())
-            newGame.endTime = Date()
+            newGame.startTime = Date()
+            newGame.endTime = Date(timeInterval: TimeInterval.random(in: 10...1), since: Date())
             newGame.number = Int16.random(in: 1...9)
         }
-        do {
-            try viewContext.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
+        result.save()
         return result
     }()
 
@@ -53,5 +46,14 @@ struct PersistenceController {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+    }
+    
+    func save() {
+        do {
+            try container.viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            NSLog("Error saving context: \(nsError), \(nsError.userInfo)")
+        }
     }
 }

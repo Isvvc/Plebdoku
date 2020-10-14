@@ -12,7 +12,8 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             GameView()
-                .environmentObject(SudokuController())
+                .environmentObject(SudokuController(context: PersistenceController.shared.container.viewContext))
+                .environmentObject(GameController())
         }
     }
 }

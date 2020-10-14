@@ -24,7 +24,7 @@ class GameController: ObservableObject {
     func gameTime(_ game: Game) -> TimeInterval? {
         guard let startTime = game.startTime,
               let endTime = game.endTime else { return nil }
-        return startTime.timeIntervalSince(endTime)
+        return endTime.timeIntervalSince(startTime)
     }
     
     func time(_ game: Game) -> String? {

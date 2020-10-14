@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GamesView: View {
     @Environment(\.managedObjectContext) private var moc
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Game.startTime, ascending: true)])
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Game.startTime, ascending: false)])
     private var games: FetchedResults<Game>
     
     @EnvironmentObject var gameController: GameController

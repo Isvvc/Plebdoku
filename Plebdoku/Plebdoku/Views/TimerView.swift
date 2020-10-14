@@ -11,7 +11,6 @@ struct TimerView: View {
     
     @EnvironmentObject var sudokuController: SudokuController
     
-//    @State private var isTimerRunning = false
     @State private var timerString = "0.00"
     @State private var timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
 
