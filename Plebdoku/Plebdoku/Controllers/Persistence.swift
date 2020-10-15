@@ -28,6 +28,7 @@ struct PersistenceController {
 
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Plebdoku")
+        container.viewContext.automaticallyMergesChangesFromParent = true
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
