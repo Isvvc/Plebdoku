@@ -19,6 +19,9 @@
 		590CB4D125350007006E6FE4 /* PlebdokuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590CB4D025350007006E6FE4 /* PlebdokuView.swift */; };
 		5950D468253533E800897CAA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5950D467253533E800897CAA /* SettingsView.swift */; };
 		59762CB725352A7400F743BE /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59762CB625352A7300F743BE /* TimerView.swift */; };
+		597AA12F2538B68A00FBAF3A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 597AA12E2538B68A00FBAF3A /* CloudKit.framework */; };
+		59AE524825366EE100777194 /* GamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AE524725366EE100777194 /* GamesView.swift */; };
+		59AE524D253674A000777194 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AE524C253674A000777194 /* GameController.swift */; };
 		59CC2C0B25351D4F00061DDC /* NumPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CC2C0A25351D4F00061DDC /* NumPad.swift */; };
 		59CC2C1025351E5700061DDC /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CC2C0F25351E5700061DDC /* GameView.swift */; };
 /* End PBXBuildFile section */
@@ -59,6 +62,10 @@
 		590CB4D025350007006E6FE4 /* PlebdokuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlebdokuView.swift; sourceTree = "<group>"; };
 		5950D467253533E800897CAA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		59762CB625352A7300F743BE /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		597AA1292538B68400FBAF3A /* Plebdoku.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Plebdoku.entitlements; sourceTree = "<group>"; };
+		597AA12E2538B68A00FBAF3A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		59AE524725366EE100777194 /* GamesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesView.swift; sourceTree = "<group>"; };
+		59AE524C253674A000777194 /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		59CC2C0A25351D4F00061DDC /* NumPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumPad.swift; sourceTree = "<group>"; };
 		59CC2C0F25351E5700061DDC /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				597AA12F2538B68A00FBAF3A /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +103,7 @@
 				590CB4A42534EE3C006E6FE4 /* PlebdokuTests */,
 				590CB4AF2534EE3C006E6FE4 /* PlebdokuUITests */,
 				590CB48C2534EE39006E6FE4 /* Products */,
+				597AA12D2538B68A00FBAF3A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +120,7 @@
 		590CB48D2534EE39006E6FE4 /* Plebdoku */ = {
 			isa = PBXGroup;
 			children = (
+				597AA1292538B68400FBAF3A /* Plebdoku.entitlements */,
 				590CB48E2534EE39006E6FE4 /* PlebdokuApp.swift */,
 				590CB4CF2534FFF6006E6FE4 /* Model */,
 				590CB4CB2534FFEC006E6FE4 /* Views */,
@@ -153,6 +163,7 @@
 			children = (
 				590CB4972534EE3C006E6FE4 /* Persistence.swift */,
 				590CB4C62534F08C006E6FE4 /* SudokuController.swift */,
+				59AE524C253674A000777194 /* GameController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -166,6 +177,7 @@
 				59CC2C0A25351D4F00061DDC /* NumPad.swift */,
 				59762CB625352A7300F743BE /* TimerView.swift */,
 				5950D467253533E800897CAA /* SettingsView.swift */,
+				59AE524725366EE100777194 /* GamesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -176,6 +188,14 @@
 				590CB4992534EE3C006E6FE4 /* Plebdoku.xcdatamodeld */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		597AA12D2538B68A00FBAF3A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				597AA12E2538B68A00FBAF3A /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				59762CB725352A7400F743BE /* TimerView.swift in Sources */,
+				59AE524D253674A000777194 /* GameController.swift in Sources */,
 				590CB4D125350007006E6FE4 /* PlebdokuView.swift in Sources */,
 				590CB4C72534F08C006E6FE4 /* SudokuController.swift in Sources */,
 				590CB4982534EE3C006E6FE4 /* Persistence.swift in Sources */,
@@ -316,6 +337,7 @@
 				590CB48F2534EE39006E6FE4 /* PlebdokuApp.swift in Sources */,
 				59CC2C0B25351D4F00061DDC /* NumPad.swift in Sources */,
 				59CC2C1025351E5700061DDC /* GameView.swift in Sources */,
+				59AE524825366EE100777194 /* GamesView.swift in Sources */,
 				590CB49B2534EE3C006E6FE4 /* Plebdoku.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -473,6 +495,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Plebdoku/Plebdoku.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Plebdoku/Preview Content\"";
 				DEVELOPMENT_TEAM = A4525544Q4;
@@ -495,6 +518,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Plebdoku/Plebdoku.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Plebdoku/Preview Content\"";
 				DEVELOPMENT_TEAM = A4525544Q4;

@@ -23,11 +23,14 @@ struct SettingsView: View {
                 .pickerStyle(SegmentedPickerStyle())
             }
         }
+        .navigationTitle("Settings")
     }
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        NavigationView {
+            SettingsView()
+        }
     }
 }

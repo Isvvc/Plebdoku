@@ -5,7 +5,7 @@
 //  Created by Isaac Lyons on 10/12/20.
 //
 
-import Foundation
+import CoreData
 
 class SudokuController: ObservableObject {
     private let defaultSudoku: [[Int8]] = [
@@ -23,23 +23,41 @@ class SudokuController: ObservableObject {
     @Published var plebdoku: [[Int8]]
     @Published var x: Int
     @Published var y: Int
-    @Published var winner: Bool?
-    @Published var startTime: Date = Date()
     @Published var timerIsRunning = false
+    @Published var game: Game?
     
-    var missing: Int8 {
-        plebdoku[y][x]
+    var missing: Int16 {
+        Int16(plebdoku[y][x])
     }
     
     var gameInProgress: Bool {
-        !(winner ?? false)
+        game?.endTime == nil
     }
     
-    init() {
+    init(context: NSManagedObjectContext? = nil) {
         plebdoku = []
         x = 0
         y = 0
-        generatePlebdoku()
+        
+        if let context = context {
+            // Clear out Games that were started but not finished
+            do {
+                let gamesFetcheRequest: NSFetchRequest<Game> = Game.fetchRequest()
+                gamesFetcheRequest.predicate = NSPredicate(format: "endTime == nil")
+                gamesFetcheRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Game.startTime, ascending: false)]
+                let unfinishedGames = try context.fetch(gamesFetcheRequest)
+                
+                game = unfinishedGames.first
+                unfinishedGames.dropFirst().forEach(context.delete)
+                try context.save()
+            } catch {
+                NSLog("Error fetching ")
+            }
+            newGame(context: context)
+        } else {
+            generatePlebdoku()
+        }
+        
     }
     
     func generatePlebdoku() {
@@ -58,9 +76,21 @@ class SudokuController: ObservableObject {
         // Pick a random number to be missing
         x = Int.random(in: 0..<9)
         y = Int.random(in: 0..<9)
+    }
+    
+    func newGame(context: NSManagedObjectContext) {
+        generatePlebdoku()
         
-        winner = nil
-        startTime = Date()
+        if let game = game,
+           game.endTime == nil {
+            game.startTime = Date()
+            game.number = missing
+        } else {
+            let game = Game(context: context)
+            game.startTime = Date()
+            game.number = missing
+            self.game = game
+        }
     }
     
     func plebdokuString() -> String {
@@ -75,7 +105,14 @@ class SudokuController: ObservableObject {
     }
     
     func guess(_ num: Int) {
-        winner = num == missing
+        game?.winner = num == missing
+        game?.endTime = Date()
+        PersistenceController.shared.save()
+    }
+    
+    func scoreString(gameController: GameController) -> String {
+        guard let game = game else { return "" }
+        return "\(gameController.score(game)) points"
     }
     
 }

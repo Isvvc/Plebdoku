@@ -14,17 +14,13 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newGame = Game(context: viewContext)
+            newGame.startTime = Date()
+            newGame.endTime = Date(timeInterval: TimeInterval.random(in: 10...1), since: Date())
+            newGame.number = Int16.random(in: 1...9)
+            newGame.winner = Bool.random()
         }
-        do {
-            try viewContext.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
+        result.save()
         return result
     }()
 
@@ -32,6 +28,7 @@ struct PersistenceController {
 
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Plebdoku")
+        container.viewContext.automaticallyMergesChangesFromParent = true
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
@@ -51,5 +48,14 @@ struct PersistenceController {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+    }
+    
+    func save() {
+        do {
+            try container.viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            NSLog("Error saving context: \(nsError), \(nsError.userInfo)")
+        }
     }
 }

@@ -11,7 +11,6 @@ struct TimerView: View {
     
     @EnvironmentObject var sudokuController: SudokuController
     
-//    @State private var isTimerRunning = false
     @State private var timerString = "0.00"
     @State private var timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
 
@@ -20,20 +19,18 @@ struct TimerView: View {
             .font(Font.system(.title, design: .monospaced))
             .onReceive(timer) { _ in
                 if sudokuController.timerIsRunning {
-                    timerString = String(format: "%.2f", Date().timeIntervalSince(sudokuController.startTime))
+                    timerString = String(format: "%.2f", Date().timeIntervalSince(sudokuController.game?.startTime ?? Date()))
                 }
             }
-            .onChange(of: sudokuController.winner) { winner in
-                if let winner = winner {
-                    if winner {
-                        stopTimer()
-                    }
+            .onChange(of: sudokuController.game?.endTime) { endTime in
+                if endTime != nil {
+                    stopTimer()
                 } else {
                     startTimer()
                 }
             }
             .onAppear {
-                if sudokuController.winner ?? false {
+                if sudokuController.game?.endTime != nil {
                     stopTimer()
                 } else {
                     startTimer()
@@ -56,5 +53,6 @@ struct TimerView: View {
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
         TimerView()
+            .environmentObject(SudokuController())
     }
 }

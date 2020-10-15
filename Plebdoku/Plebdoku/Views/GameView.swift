@@ -8,18 +8,33 @@
 import SwiftUI
 
 struct GameView: View {
+    @Environment(\.managedObjectContext) private var moc
     
     @EnvironmentObject var sudokuController: SudokuController
+    @EnvironmentObject var gameController: GameController
     
     @State private var showingSettings = false
+    @State private var showingGames = false
     
     var settingsButton: some View {
         NavigationLink(destination: SettingsView(), isActive: $showingSettings) {
-                Image(systemName: "gear")
-                    .imageScale(.large)
+            Image(systemName: "gear")
+                .imageScale(.large)
         }
         .onChange(of: showingSettings) { showingSettings in
             sudokuController.timerIsRunning = !showingSettings
+        }
+    }
+    
+    var gamesButton: some View {
+        NavigationLink(
+            destination: GamesView()
+                .environmentObject(gameController),
+            isActive: $showingGames) {
+            Text("History")
+        }
+        .onChange(of: showingGames) { showingGames in
+            sudokuController.timerIsRunning = !showingGames
         }
     }
     
@@ -32,9 +47,9 @@ struct GameView: View {
                 PlebdokuView()
                 Spacer()
                 TimerView()
-                if let winner = sudokuController.winner {
-                    if winner {
-                        Text("You're winner!")
+                if sudokuController.game?.endTime != nil {
+                    if sudokuController.game?.winner ?? false {
+                        Text("You're winner! \(sudokuController.scoreString(gameController: gameController))")
                     } else {
                         Text("You're a pleb.")
                     }
@@ -42,7 +57,7 @@ struct GameView: View {
                     Text("Plebdoku")
                 }
                 Button("New Game") {
-                    sudokuController.generatePlebdoku()
+                    sudokuController.newGame(context: moc)
                 }
                 GeometryReader { _ in
                     // For some reason the numpad will only
@@ -52,12 +67,16 @@ struct GameView: View {
             }
         }
         .navigationTitle("Plebdoku")
-        .navigationBarItems(trailing: settingsButton)
+        .navigationBarItems(leading: gamesButton, trailing: settingsButton)
     }
 }
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView()
+        NavigationView {
+            GameView()
+                .environmentObject(SudokuController(context: PersistenceController.preview.container.viewContext))
+                .environmentObject(GameController())
+        }
     }
 }

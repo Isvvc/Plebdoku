@@ -52,5 +52,6 @@ struct NumPad: View {
 struct NumPad_Previews: PreviewProvider {
     static var previews: some View {
         NumPad()
+            .environmentObject(SudokuController())
     }
 }
